@@ -1,3 +1,2 @@
 # README
-
-class Database
+Classe PHP pour la gestion d'un base de données
