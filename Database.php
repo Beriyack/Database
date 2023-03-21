@@ -1,17 +1,20 @@
 <?php
 class Database {
-    private $host = "your_host"; // L'hôte de la base de données
-    private $dbname = "your_dbname"; // Le nom de la base de données
-    private $username = "your_username"; // Le nom d'utilisateur pour se connecter à la base de données
-    private $password = "your_password"; // Le mot de passe pour se connecter à la base de données
     private $conn; // La variable pour la connexion à la base de données
 
     /**
      * Constructeur pour établir une connexion à la base de données
+     * Par défaut, l'hôte la base de données se trouve en local en se connectant
+     * avec l'utilisateur root sans mot de passe à la b
+     * 
+     * @param string $host L'hôte de la base de données.
+     * @param string $dbname Le nom de la base de données
+     * @param string $username Le nom d'utilisateur pour se connecter à la base de données
+     * @param string $password Le mot de passe pour se connecter à la base de données
      */
-    public function __construct() {
+    public function __construct(string $host = "localhost", string $dbname = "your_dbname", string $username = "root", string $password = "") {
         try {
-            $this->conn = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
         } catch(PDOException $e) {
             echo "Erreur de connexion: " . $e->getMessage();
         }
